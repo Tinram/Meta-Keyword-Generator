@@ -5,16 +5,17 @@
     * MetaKeyGen
     *
     * Meta keyword tag generator from static HTML file,
-    * Created after a website utility disappeared in 2005, with word counter inspiration by Isaac Gouy.
+    * Created after a website utility disappeared in 2005.
+    * Word counter inspiration by Isaac Gouy.
     *
-    * Coded to PHP 5.4+
+    * This version coded to PHP 5.4.
     *
     * Usage:
     *        php metakeygen.php <filename>
     *
     * @author        Martin Latter
     * @copyright     Martin Latter, May 2005 (revised 2015)
-    * @version       2.21
+    * @version       2.22
     * @license       GNU GPL v3.0
     * @link          https://github.com/Tinram/Meta-Keyword-Generator.git
 */
@@ -43,36 +44,29 @@ if ( ! $sFileData)
     die(' Error reading file: ' . $sFilename . DUB_EOL);
 }
 
-
 $sFileData = strip_tags(strtolower($sFileData));
 
 $aWordCount = [];
 $aPhraseCount = [];
 $aPhrases = [];
 
-
 $aWords = preg_split('/[^a-zA-Z]+/', $sFileData);
 $iNumPhrases = preg_match_all('/\w+\s+\w+/', $sFileData, $aPhrases);
-
 
 foreach ($aWords as $sWord)
 {
     isset($aWordCount[$sWord]) ? $aWordCount[$sWord]++ : $aWordCount[$sWord] = 1;
 }
 
-
 foreach ($aPhrases[0] as $sPhrase)
 {
     isset($aPhraseCount[$sPhrase]) ? $aPhraseCount[$sPhrase]++ : $aPhraseCount[$sPhrase] = 1;
 }
 
-
 arsort($aWordCount);
 arsort($aPhraseCount);
 
-
 echo buildMetaTags($aWordCount, $aPhraseCount);
-
 
 exit;
 
@@ -84,7 +78,7 @@ exit;
     *
     * @param   array $aWords, word-count pairs
     * @param   array $aPhrases, phrase-count pairs
-    * @return  string, meta tag HTML
+    * @return  string: meta tag HTML
 */
 
 function buildMetaTags(array $aWords, array $aPhrases)
