@@ -11,12 +11,16 @@ Meta Keyword Generator strips HTML tags from the provided file, orders the file'
 
 This file produces:
 
+```html
     <meta name="keywords" content="meta,keyword,html,file,content,generator,php,gpl,tag,keywords,meta keyword,keywords tag">
+```
 
 
 ## Usage
 
-       php metakeygen.php <file>
+```bash
+    php metakeygen.php <file>
+```
 
 
 ## Credits
