@@ -2,31 +2,36 @@
 <?php
 
 /**
-    * MetaKeyGen
+    * MetaKeyGen.
     *
-    * Meta keyword tag generator from static HTML file,
+    * Meta keyword tag generator from static HTML file.
     * Created after a website utility disappeared in 2005.
     * Word counter inspiration by Isaac Gouy.
     *
-    * This version coded to PHP 5.4.
+    * Coded to PHP 7.2
     *
     * Usage:
     *        php metakeygen.php <filename>
     *
     * @author        Martin Latter
     * @copyright     Martin Latter, May 2005 (revised 2015)
-    * @version       2.22
+    * @version       2.23
     * @license       GNU GPL v3.0
     * @link          https://github.com/Tinram/Meta-Keyword-Generator.git
 */
 
+
+declare(strict_types = 1);
 
 define('DUB_EOL', PHP_EOL . PHP_EOL);
 
 
 if ( ! isset($_SERVER['argv'][1]))
 {
-    $sUsage = PHP_EOL . ' ' . basename($_SERVER['argv'][0], '.php') . DUB_EOL . "\tusage: " . basename($_SERVER['argv'][0], '.php') . ' <filename>' . DUB_EOL;
+    $sUsage = PHP_EOL . ' ' . basename($_SERVER['argv'][0], '.php')
+	. DUB_EOL
+	. "\tusage: " . basename($_SERVER['argv'][0], '.php') . ' <filename>'
+	. DUB_EOL;
     die($sUsage);
 }
 
@@ -39,7 +44,7 @@ if ( ! file_exists($sFilename))
 
 $sFileData = file_get_contents($sFilename);
 
-if ( ! $sFileData)
+if ($sFileData === false)
 {
     die(' Error reading file: ' . $sFilename . DUB_EOL);
 }
@@ -68,20 +73,16 @@ arsort($aPhraseCount);
 
 echo buildMetaTags($aWordCount, $aPhraseCount);
 
-exit;
-
-#####
-
 
 /**
     * Build meta tag string from words and phrases arrays.
     *
-    * @param   array $aWords, word-count pairs
-    * @param   array $aPhrases, phrase-count pairs
+    * @param   array<int> $aWords, word-count pairs
+    * @param   array<int> $aPhrases, phrase-count pairs
     * @return  string: meta tag HTML
 */
 
-function buildMetaTags(array $aWords, array $aPhrases)
+function buildMetaTags(array $aWords, array $aPhrases): string
 {
     $aKW = [];
 
@@ -89,7 +90,7 @@ function buildMetaTags(array $aWords, array $aPhrases)
 
     foreach ($aWords as $sWord => $iCount)
     {
-        if ( ! in_array($sWord, $aCommonWords))
+        if ( ! in_array($sWord, $aCommonWords, true))
         {
             if ($iCount > 1)
             {
