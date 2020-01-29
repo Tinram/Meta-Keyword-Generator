@@ -15,13 +15,13 @@
     *
     * @author        Martin Latter
     * @copyright     Martin Latter, May 2005 (revised 2015)
-    * @version       2.23
+    * @version       2.24
     * @license       GNU GPL v3.0
     * @link          https://github.com/Tinram/Meta-Keyword-Generator.git
 */
 
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 define('DUB_EOL', PHP_EOL . PHP_EOL);
 
