@@ -15,7 +15,7 @@
     *
     * @author        Martin Latter
     * @copyright     Martin Latter, May 2005 (revised 2015)
-    * @version       2.24
+    * @version       2.25
     * @license       GNU GPL v3.0
     * @link          https://github.com/Tinram/Meta-Keyword-Generator.git
 */
@@ -29,9 +29,9 @@ define('DUB_EOL', PHP_EOL . PHP_EOL);
 if ( ! isset($_SERVER['argv'][1]))
 {
     $sUsage = PHP_EOL . ' ' . basename($_SERVER['argv'][0], '.php')
-	. DUB_EOL
-	. "\tusage: " . basename($_SERVER['argv'][0], '.php') . ' <filename>'
-	. DUB_EOL;
+    . DUB_EOL
+    . "\tusage: " . basename($_SERVER['argv'][0], '.php') . ' <filename>'
+    . DUB_EOL;
     die($sUsage);
 }
 
